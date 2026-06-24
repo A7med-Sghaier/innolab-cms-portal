@@ -1,0 +1,25 @@
+{
+  "connection": "default",
+  "collectionName": "student",
+  "info": {
+    "name": "student",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "first_name": {
+      "default": "",
+      "type": "string"
+    },
+    "second_name": {
+      "default": "",
+      "type": "string"
+    },
+    "immat": {
+      "default": "",
+      "type": "string"
+    }
+  }
+}

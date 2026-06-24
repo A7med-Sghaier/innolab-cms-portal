@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/studies",
+      "handler": "Studies.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/studies/count",
+      "handler": "Studies.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/studies/:_id",
+      "handler": "Studies.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/studies",
+      "handler": "Studies.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/studies/:_id",
+      "handler": "Studies.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/studies/:_id",
+      "handler": "Studies.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

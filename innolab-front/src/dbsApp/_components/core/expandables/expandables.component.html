@@ -1,0 +1,84 @@
+<ng-container *ngTemplateOutlet="epandablesCnt"></ng-container>
+
+<ng-template #epandablesCnt>
+  <mat-accordion [multi]="false">
+
+    <ng-container *ngFor="let group of group; let groupIndex = index">
+      <mat-expansion-panel [expanded]="groupIndex === 0">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{group.key}}</mat-panel-title>
+          <mat-panel-description></mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <ng-container *ngTemplateOutlet="containerTypes; context: {view: view, data: group.items}"></ng-container>
+        </ng-template>
+      </mat-expansion-panel>
+      <!--
+      <ng-container *ngTemplateOutlet="expandableCnt; context: {$implicit: group}"></ng-container>
+      -->
+    </ng-container>
+  </mat-accordion>
+</ng-template>
+
+<!--
+<ng-template #expandableCnt let-group>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{group.key}}</mat-panel-title>
+      <mat-panel-description></mat-panel-description>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <ng-container *ngTemplateOutlet="containerTypes; context: {view: view, data: group.items}"></ng-container>
+    </ng-template>
+<! --
+    <mat-form-field>
+      <input matInput placeholder="First name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Age">
+    </mat-form-field>
+    -- >
+  </mat-expansion-panel>
+</ng-template>
+-->
+
+<ng-template #containerTypes let-view="view" let-data="data">
+  <ng-container [ngSwitch]="view.type">
+    <ng-container *ngSwitchCase="'content'">
+      <div class="container-fluid"></div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'markdown'">
+      <div class="container">
+        <ng-container *ngFor="let content of data">
+          <markdown class="">{{content.markdown}}</markdown>
+        </ng-container>
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'cards_view'">
+      <section class="col-12">
+        <div class="row d-flex justify-content-center">
+          <ng-container *ngTemplateOutlet="view.is_masonry ? masonryCnt: nonMasonryCnt; context: {view: view, data: data}"></ng-container>
+        </div>
+      </section>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #masonryCnt let-view="view" let-data="data">
+  <ngx-masonry [options]="{transitionDuration: '0.8s', resize: true, initLayout: true, fitWidth: true}" class="full-width">
+    <ngxMasonryItem *ngFor="let cardData of data" class="col-md-4 col-sm-6 col-xs-12">
+      <ng-container>
+        <dbs-card-view [card]="parseCardData(getRequiredView(view.key), cardData)" class="top-puffer-15 col-md-4 col-sm-6 col-xs-12"></dbs-card-view>
+      </ng-container>
+    </ngxMasonryItem>
+  </ngx-masonry>
+</ng-template>
+
+<ng-template #nonMasonryCnt let-view="view" let-data="data">
+  <ng-container *ngFor="let cardData of data;">
+    <dbs-card-view [card]="parseCardData(getRequiredView(view.key), cardData)" class="top-puffer-15 col-md-4 col-sm-6 col-xs-12"></dbs-card-view>
+  </ng-container>
+</ng-template>

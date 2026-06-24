@@ -1,0 +1,55 @@
+//rgb(57, 95, 54);
+
+.nav{
+  &-top{
+    &-menu{
+      font-family: 'PT Sans', sans-serif !important;
+      font-size: 16px !important;
+
+      &-shadow{
+        box-shadow:
+          0 10px 20px -12px rgba(0, 0, 0, 0.42),
+          0 3px 20px 0 rgba(0, 0, 0, 0.12),
+          0 8px 10px -5px rgba(0, 0, 0, 0.2);
+      }
+
+      &:hover{
+        .animated-line{
+          width: 100%;
+        }
+        // border-bottom-width: 1px;
+      }
+
+      &-transparent{
+        background: transparent !important;
+      }
+
+      &-bg{
+        &-white{
+          background: #fff !important;
+        }
+
+        &-grau{
+          background-color: rgba(0, 0, 0, 0.8);
+        }
+      }
+    }
+  }
+}
+
+.spacer{
+  flex: 1 1 auto;
+}
+
+
+.dbs{
+  &-menu{
+    &-item{
+      color: #fff !important;
+
+      &.active{
+        color: rgba(227, 253, 77, 1) !important;
+      }
+    }
+  }
+}

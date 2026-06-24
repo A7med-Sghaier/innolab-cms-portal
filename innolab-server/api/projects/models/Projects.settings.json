@@ -1,0 +1,38 @@
+{
+  "connection": "default",
+  "collectionName": "projects",
+  "info": {
+    "name": "projects",
+    "description": "projects"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "default": "",
+      "minLength": 2,
+      "type": "string",
+      "required": true
+    },
+    "create_date": {
+      "default": "",
+      "type": "date"
+    },
+    "desc": {
+      "default": "",
+      "type": "text",
+      "required": true
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "short_desc": {
+      "default": "",
+      "type": "text"
+    }
+  }
+}

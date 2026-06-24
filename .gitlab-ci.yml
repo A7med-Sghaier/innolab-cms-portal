@@ -1,0 +1,141 @@
+stages:
+  - install
+  - build
+  - test
+  - deploy
+  - cleanup
+
+install_frontend_depencies:
+  cache:
+    paths:
+      - $front_path/node_modules/
+      - $front_path/package-lock.json
+  before_script:
+    - cd $front_path
+  stage: install
+  script:
+    - echo "Install Frontend Dependencies"
+    - > 
+      if (git diff HEAD~ --name-only|grep $bds_front_dir_name) || (! ls $deploy_front_path &> /dev/null);
+        then
+          npm install --save
+          ng update @angular/cli @angular/core
+          ng update @angular/material
+      fi;
+
+build_ng_app:
+  cache:
+    paths:
+      - $front_path/node_modules/
+      - $front_path/$deployed_Front_dir_name
+      - $front_path/package-lock.json
+  before_script:
+    - cd $front_path
+  stage: build
+  script:
+    - echo "Build Angular application"
+    - >
+      if (git diff HEAD~ --name-only|grep $bds_front_dir_name) || (! ls $deploy_front_path &> /dev/null);
+        then
+          ng build --prod --source-map --output-path $deployed_Front_dir_name
+        else
+          echo "Exit No changes on front"
+      fi;
+  only:
+    - master
+    
+deploy_angular_to_production:
+  cache:
+    paths:
+      - $front_path/$deployed_Front_dir_name
+  before_script:
+    - cd $front_path
+  stage: deploy
+  script:
+    - echo "Deploy Frontend to Production"
+    - >
+      if (git diff HEAD~ --name-only|grep $bds_front_dir_name) || (! ls $deploy_front_path &> /dev/null);
+        then
+          sudo rsync -avz $deployed_Front_dir_name/ $deploy_front_path
+        else
+          echo "Exit No changes on front"
+      fi;
+  only:
+    - master
+
+install_strapi_dependencies:
+  cache:
+    paths:
+      - $server_path/node_modules/
+      - $server_path/package-lock.json
+  before_script:
+    - cd $server_path
+  stage: install
+  script: 
+    - echo "Install Strapi Dependencies"
+    - >
+      if (git diff HEAD~ --name-only|grep $server_path) || (! ls "$innolab_website$server_path" &> /dev/null);
+        then
+          echo "Install dependencies"
+          npm install --save
+        else
+        echo "Exit No changes on Api"
+      fi;
+          
+  only:
+    - master
+
+deploy_strapi_server_to_production:
+  cache:
+    paths:
+      - $server_path/node_modules/
+      - $server_path/package-lock.json
+  stage: deploy
+  script: 
+    - echo "Deploy Strapi"
+    - >
+      if (git diff HEAD~ --name-only|grep $server_path) || (! ls | grep printf "$innolab_website$server_path &> /dev/null");
+        then
+          echo "Synch server Files"
+          sudo rsync -avz $server_path $innolab_website
+          echo "restart DB"
+          sudo systemctl restart $dbService
+          echo "restart strapi"
+          sudo systemctl restart $strapiService
+        else
+        echo "Exit No changes on Api"
+      fi;
+          
+  only:
+    - master
+    
+dbDumpSync:
+  stage: deploy
+  script:
+    - echo "Synchronise db dump on change"
+    - >
+      if git diff HEAD~ --name-only|grep $bds_dump_name;
+        then
+          echo "Restore DB"
+          GIT_DUMP_PATH=`git diff HEAD~ --name-only|grep $bds_dump_name`
+          mongorestore --port $bd_port --noIndexRestore --gzip --archive=$GIT_DUMP_PATH
+          echo "restart DB"
+          sudo systemctl restart $dbService
+          echo "restart strapi"
+          sudo systemctl restart $strapiService
+        else 
+          echo "Exit No changes on dump"
+      fi;
+  only:
+    - master
+    
+cleanup_job:
+  stage: cleanup
+  script:
+    - echo "Cleaning up"
+    - rm -rf $server_path/node_modules/
+    - rm -rf $server_path/package-lock.json
+    - rm -rf $front_path/node_modules/
+    - rm -rf $front_path/$deployed_Front_dir_name
+    - rm -rf $front_path/package-lock.json
+  when: always

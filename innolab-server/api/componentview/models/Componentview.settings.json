@@ -1,0 +1,26 @@
+{
+  "connection": "default",
+  "collectionName": "componentview",
+  "info": {
+    "name": "componentview",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "key": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "default": "",
+      "type": "string"
+    },
+    "meta_data": {
+      "default": "",
+      "type": "json"
+    }
+  }
+}

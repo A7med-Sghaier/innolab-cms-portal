@@ -1,0 +1,48 @@
+<ng-container *ngTemplateOutlet="carouselCnt"></ng-container>
+
+
+<ng-template #carouselCnt>
+  <div id="{{carouselRef}}" class="carousel slide" data-ride="carousel">
+    <ng-container *ngTemplateOutlet="slidesListRef"></ng-container>
+    <ng-container>
+      <div class="carousel-inner">
+        <ng-container *ngFor="let slide of slides; let slideIndex = index;">
+          <ng-container *ngTemplateOutlet="slideCnt; context: {slide: slide, index: slideIndex}"></ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+
+    <a class="carousel-control-prev" href="#{{carouselRef}}" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#{{carouselRef}}" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</ng-template>
+
+
+
+<ng-template #slidesListRef>
+  <ol class="carousel-indicators">
+    <ng-container *ngFor="let slideIndex of nToArray(slides.length)">
+      <li [attr.data-target]="'#' + carouselRef" [attr.data-slide-to]="slideIndex" [ngClass]="{active: slideIndex === 0}"></li>
+    </ng-container>
+  </ol>
+</ng-template>
+
+<ng-template></ng-template>
+
+
+<ng-template #slideCnt let-slide="slide" let-index="index">
+  <div [ngClass]="{active: index === 0}" class="carousel-item">
+    <img class="d-block w-100" src="{{slide.image.path}}" alt="">
+    <div class="carousel-caption d-none d-md-block">
+      <ng-container *ngFor=" let text of slide.desc">
+        <p>{{text}}</p>
+      </ng-container>
+    </div>
+  </div>
+</ng-template>

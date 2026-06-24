@@ -1,0 +1,84 @@
+::ng-deep{
+  .bg{
+    &-transparent{
+      &>mat-accordion{
+        mat-expansion-panel{
+          background: transparent !important;
+        }
+      }
+    }
+    &-grey{
+      &-0{
+        &-3{
+          &>mat-accordion {
+            mat-expansion-panel {
+              background: rgba(123, 123, 123, 0.3) !important;
+            }
+          }
+          .card-project{
+            background: rgba(123, 123, 123, 0.7) !important;
+            .mat-card-content{
+              .card-project-short-desc{
+                color: #ffffff !important;
+              }
+            }
+          }
+
+          .card-team{
+            background: rgba(123, 123, 123, 0.7) !important;
+            .card-team-title{
+              color: rgba(232, 184, 35, 0.88) !important;
+              a{
+                color: rgba(232, 184, 35, 0.88) !important;
+              }
+            }
+
+            .mat-card-content{
+              .card-team-desc, .card-team-short-desc{
+                color: #ffffff !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .card{
+    &-bg{
+      &-white{
+        &-0{
+          &-7{
+            .card-view{
+              background: rgba(255, 255, 255, 0.65) !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .text-white{
+    &>mat-accordion{
+      mat-expansion-panel{
+        mat-expansion-panel-header{
+          .mat-expansion-panel-header{
+            &-title{
+              font-weight: 500;
+              font-size: 1.1rem;
+            }
+            &-title, &-description{
+              color: #fff !important;
+            }
+          }
+
+          .mat-expansion-indicator{
+            &:after,&{
+              color: #fff !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}

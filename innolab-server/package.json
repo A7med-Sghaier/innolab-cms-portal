@@ -1,0 +1,53 @@
+{
+  "name": "dbs_ifi_2018",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application.",
+  "main": "./server.js",
+  "scripts": {
+    "setup": "cd admin && npm run setup",
+    "start": "node server.js",
+    "strapi": "node_modules/strapi/bin/strapi.js",
+    "lint": "node_modules/.bin/eslint api/**/*.js config/**/*.js plugins/**/*.js",
+    "postinstall": "node node_modules/strapi/lib/utils/post-install.js"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-react": "^6.8.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "immutable": "^4.0.0-rc.12",
+    "jsonwebtoken": "^8.4.0",
+    "koa2-ratelimit": "^0.8.0",
+    "lodash": "4.x.x",
+    "purest": "^3.1.0",
+    "strapi": "3.0.0-alpha.14.3",
+    "strapi-hook-mongoose": "3.0.0-alpha.14.3",
+    "stream-to-array": "^2.3.0"
+  },
+  "author": {
+    "name": "asghaier",
+    "email": "",
+    "url": ""
+  },
+  "maintainers": [
+    {
+      "name": "asghaier",
+      "email": "",
+      "url": ""
+    }
+  ],
+  "strapi": {
+    "packageManager": "npm",
+    "uuid": "779efcc6-49dd-4ec7-b96e-26f162ee02a5"
+  },
+  "engines": {
+    "node": ">= 9.0.0",
+    "npm": ">= 5.0.0"
+  },
+  "license": "MIT"
+}

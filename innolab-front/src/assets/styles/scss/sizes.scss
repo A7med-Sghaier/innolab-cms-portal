@@ -1,0 +1,348 @@
+/*************************************************************
+ * innolab-front - sizes.scss
+ *
+ * created by : Ahmed Sghaier - a7mado008@gmail.com
+ * created on : 23.10.18 - 15:39
+ * version : 1.0
+ * copyright : all right reserved 2018
+ *************************************************************/
+
+
+.font{
+  &-small{
+    font-size: small;
+    &-x{
+      font-size: x-small;
+    }
+    &-xx{
+      font-size: xx-small;
+    }
+  }
+  &-size{
+    &-0{
+      font-size: 0rem !important;
+      &-1{
+        font-size: 0.1rem !important;
+      }
+      &-2{
+        font-size: 0.2rem !important;
+      }
+      &-3{
+        font-size: 0.3rem !important;
+      }
+      &-4{
+        font-size: 0.4rem !important;
+      }
+      &-5{
+        font-size: 0.5rem !important;
+      }
+      &-6{
+        font-size: 0.6rem !important;
+      }
+      &-7{
+        font-size: 0.7rem !important;
+      }
+      &-8{
+        font-size: 0.8rem !important;
+      }
+      &-9{
+        font-size: 0.9rem !important;
+      }
+    }
+
+    &-1{
+      font-size: 1rem !important;
+      &-1{
+        font-size: 1.1rem !important;
+      }
+      &-2{
+        font-size: 1.2rem !important;
+      }
+      &-3{
+        font-size: 1.3rem !important;
+      }
+      &-4{
+        font-size: 1.4rem !important;
+      }
+      &-5{
+        font-size: 1.5rem !important;
+      }
+      &-6{
+        font-size: 1.6rem !important;
+      }
+      &-7{
+        font-size: 1.7rem !important;
+      }
+      &-8{
+        font-size: 1.8rem !important;
+      }
+      &-9{
+        font-size: 1.9rem !important;
+      }
+
+      &5{
+        &-px{
+          font-size: 15px !important;
+        }
+      }
+      &6{
+        &-px{
+          font-size: 16px !important;
+        }
+      }
+      &8{
+        &-px{
+          font-size: 18px !important;
+        }
+      }
+    }
+
+    &-2{
+      font-size: 2rem !important;
+      &-1{
+        font-size: 2.1rem !important;
+      }
+      &-2{
+        font-size: 2.2rem !important;
+      }
+      &-3{
+        font-size: 2.3rem !important;
+      }
+      &-4{
+        font-size: 2.4rem !important;
+      }
+      &-5{
+        font-size: 2.5rem !important;
+      }
+      &-6{
+        font-size: 2.6rem !important;
+      }
+      &-7{
+        font-size: 2.7rem !important;
+      }
+      &-8{
+        font-size: 2.8rem !important;
+      }
+      &-9{
+        font-size: 2.9rem !important;
+      }
+
+      &0{
+        &-px{
+          font-size: 20px !important;
+        }
+      }
+      &1{
+        &-px{
+          font-size: 21px !important;
+        }
+      }
+      &2{
+        &-px{
+          font-size: 22px !important;
+        }
+      }
+      &3{
+        &-px{
+          font-size: 23px !important;
+        }
+      }
+      &4{
+        &-px{
+          font-size: 24px !important;
+        }
+      }
+      &5{
+        &-px{
+          font-size: 25px !important;
+        }
+      }
+      &6{
+        &-px{
+          font-size: 26px !important;
+        }
+      }
+      &7{
+        &-px{
+          font-size: 27px !important;
+        }
+      }
+      &8{
+        &-px{
+          font-size: 28px !important;
+        }
+      }
+      &9{
+        &-px{
+          font-size: 29px !important;
+        }
+      }
+    }
+
+    &-3{
+      font-size: 3rem !important;
+      &-1{
+        font-size: 3.1rem !important;
+      }
+      &-2{
+        font-size: 3.2rem !important;
+      }
+      &-3{
+        font-size: 3.3rem !important;
+      }
+      &-4{
+        font-size: 3.4rem !important;
+      }
+      &-5{
+        font-size: 3.5rem !important;
+      }
+      &-6{
+        font-size: 3.6rem !important;
+      }
+      &-7{
+        font-size: 3.7rem !important;
+      }
+      &-8{
+        font-size: 3.8rem !important;
+      }
+      &-9{
+        font-size: 3.9rem !important;
+      }
+
+      &0{
+        &-px{
+          font-size: 30px !important;
+        }
+      }
+      &1{
+        &-px{
+          font-size: 31px !important;
+        }
+      }
+      &2{
+        &-px{
+          font-size: 32px !important;
+        }
+      }
+      &3{
+        &-px{
+          font-size: 33px !important;
+        }
+      }
+      &4{
+        &-px{
+          font-size: 34px !important;
+        }
+      }
+      &5{
+        &-px{
+          font-size: 35px !important;
+        }
+      }
+      &6{
+        &-px{
+          font-size: 36px !important;
+        }
+      }
+      &7{
+        &-px{
+          font-size: 37px !important;
+        }
+      }
+      &8{
+        &-px{
+          font-size: 38px !important;
+        }
+      }
+      &9{
+        &-px{
+          font-size: 39px !important;
+        }
+      }
+    }
+
+    &-4{
+      font-size: 4rem !important;
+      &-1{
+        font-size: 4.1rem !important;
+      }
+      &-2{
+        font-size: 4.2rem !important;
+      }
+      &-3{
+        font-size: 4.3rem !important;
+      }
+      &-4{
+        font-size: 4.4rem !important;
+      }
+      &-5{
+        font-size: 4.5rem !important;
+      }
+      &-6{
+        font-size: 4.6rem !important;
+      }
+      &-7{
+        font-size: 4.7rem !important;
+      }
+      &-8{
+        font-size: 4.8rem !important;
+      }
+      &-9{
+        font-size: 4.9rem !important;
+      }
+
+      &0{
+        &-px{
+          font-size: 40px !important;
+        }
+      }
+    }
+
+    &-5{
+      &6{
+        &-px{
+          font-size: 56px !important;
+        }
+      }
+    }
+
+    /** 7x **/
+    &-7{
+      &0{
+        &-px{
+          font-size: 70px !important;
+        }
+      }
+    }
+  }
+
+  &-weight{
+    &-100{
+      font-weight: 100;
+    }
+    &-200{
+      font-weight: 200;
+    }
+    &-300{
+      font-weight: 300;
+    }
+    &-400{
+      font-weight: 400;
+    }
+    &-500{
+      font-weight: 500;
+    }
+    &-600{
+      font-weight: 600;
+    }
+    &-700{
+      font-weight: 700;
+    }
+    &-800{
+      font-weight: 800;
+    }
+    &-900{
+      font-weight: 900;
+    }
+  }
+}

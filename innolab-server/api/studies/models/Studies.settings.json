@@ -1,0 +1,30 @@
+{
+  "connection": "default",
+  "collectionName": "studies",
+  "info": {
+    "name": "studies",
+    "description": "Studies"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "key": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "category": {
+      "default": "",
+      "type": "enumeration",
+      "enum": [
+        "Current Semester",
+        "Other Semesters",
+        "Bachelor Studies",
+        "Master Studies",
+        "Master Data Science",
+        "BSc Msc Thesis"
+      ]
+    }
+  }
+}

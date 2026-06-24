@@ -1,0 +1,54 @@
+.card{
+  &-team{
+    &-avatar{
+      width: 150px;
+      height: 150px;
+      max-width: 150px;
+      max-height: 150px;
+      margin: 0 auto 15px;
+      border: 10px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50% !important;
+      overflow: hidden;
+    }
+
+    &-title{
+      // color: #006633;
+      color: rgba(52, 142, 148, 0.88);
+      a{
+        // color: #006633;
+        color: rgba(52, 142, 148, 0.88);
+      }
+    }
+  }
+
+  &-project{
+    &-avatar{
+      width: 115px;
+      height: 115px;
+      max-width: 115px;
+      max-height: 115px;
+      margin: 0 auto 15px;
+      border: 10px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50% !important;
+      overflow: hidden;
+    }
+
+    &-title{
+      color: #ffeb45;
+
+      a{
+        color: #ffeb45;
+      }
+    }
+
+    &-short-desc{
+      p{
+        line-height:1.2em;
+        height:3.6em;
+        overflow:hidden;
+      }
+    }
+  }
+
+
+}

@@ -1,0 +1,130 @@
+<ng-container *ngIf="viewStructure && viewStructure.items; then menuCnt;"></ng-container>
+<ng-container *ngIf="viewStructure && viewStructure.items; then mainCnt;"></ng-container>
+
+<ng-template #menuCnt let-items>
+  <dbs-menu [menuItems]="viewStructure.items" (selectedMenu)="selectMenuItem($event)" class=""></dbs-menu>
+</ng-template>
+
+<ng-template #mainCnt>
+  <div  class="container-fluid full-height" style="padding-top: 64px;">
+    <div (scroll)="onScroll($event)" class="row" style="overflow: scroll; height: calc(100vh - 64px);">
+      <ng-container *ngTemplateOutlet="sectionsCnt; context: {sections: sections, level: 0}"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #sectionsCnt let-sections="sections" let-level="level">
+  <!--
+  <cdk-virtual-scroll-viewport [itemSize]="0" class="container-fluid">
+    <ng-container *cdkVirtualFor="let section of sections">
+      <ng-container *ngTemplateOutlet="oneSectionCnt; context: {section: section, level: level}"></ng-container>
+    </ng-container>
+  </cdk-virtual-scroll-viewport>
+  -->
+  <ng-container *ngFor="let section of sections">
+    <ng-container *ngTemplateOutlet="oneSectionCnt; context: {section: section, level: level}"></ng-container>
+  </ng-container>
+</ng-template>
+
+
+<ng-template #oneSectionCnt let-section="section" let-sectionKey="sectionKey" let-level="level">
+  <section [id]="section.key" [ngClass]="{'left-puffer-5-': level === 1, 'left-puffer-15-': level === 2, 'left-puffer-25-': level >= 3}"
+           [ngStyle]="getRequiredStyle(section.componentView)"
+           class="container-fluid top-padding-15 bottom-padding-15 {{otherStyles[section.key]}} {{section?.componentView?.classes}}">
+    <ng-container *ngIf="section?.label">
+        <div class="row bottom-puffer-15">
+          <div class="col-12 text-center {{section?.label?.classes}}">
+            <ng-container [ngSwitch]="level">
+              <h2 *ngSwitchCase="0" class="{{section?.label?.classes}}">{{section.label?.text}}</h2>
+              <h4 *ngSwitchCase="1" class="{{section?.label?.classes}}">{{section.label?.text}}</h4>
+              <h6 *ngSwitchCase="2" class="{{section?.label?.classes}}">{{section.label?.text}}</h6>
+            </ng-container>
+          </div>
+        </div>
+    </ng-container>
+    <ng-container *ngTemplateOutlet="containerTypes; context:{$implicit: section}"></ng-container>
+
+    <ng-container *ngIf="section?.subItems?.items">
+      <div class="row">
+        <ng-container *ngTemplateOutlet="sectionsCnt; context: {sections: section.subItems.items, sectionKey: sectionKey, level: level+1} "></ng-container>
+      </div>
+    </ng-container>
+  </section>
+
+</ng-template>
+
+
+<ng-template #containerTypes let-section>
+  <ng-container *ngIf="section?.componentView" [ngSwitch]="section.componentView.type">
+    <ng-container *ngSwitchCase="'content'">
+      <div class="container-fluid"></div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'markdown'">
+      <ng-container *ngTemplateOutlet="markDownView; context: {data: section.data, key: section.key}"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'carousel'">
+      <ng-container *ngTemplateOutlet="carouselView; context: {key: section.key}"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'cards_view'">
+      <ng-container *ngTemplateOutlet="cardsCnt; context: {data: section.data, viewStruct: getRequiredView(section.componentView.key), is_masonry: true}"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'expandables'">
+      <ng-container *ngTemplateOutlet="expandablesCnt; context: {data: section.data, groupsView: section.componentView.group}"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'flat_news'">
+      <ng-container *ngTemplateOutlet="flatNewsCnt; context:{data: section.data, viewStruct: getRequiredView(section.componentView.key)}"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'table_view'">
+      <ng-container *ngTemplateOutlet="tableViewCnt; context:{data: section.data, viewStruct: getRequiredView(section.componentView.key)}"></ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+
+<ng-template #cardsCnt let-data="data" let-viewStruct="viewStruct" let_masonry="is_masonry">
+  <section class="col-12">
+    <div class="row d-flex justify-content-center">
+      <ng-container *ngFor="let cardData of data;">
+        <dbs-card-view [card]="parseCardData(viewStruct, cardData)" class="col-lg-3 col-md-4 col-sm-6 col-xs-12"></dbs-card-view>
+      </ng-container>
+    </div>
+  </section>
+</ng-template>
+
+
+<ng-template #expandablesCnt let-data="data" let-groupsView="groupsView">
+  <dbs-expandables [data]="data.group" [requiredViews]="viewStructure?.required_views" [view]="groupsView.componentView" class="{{groupsView.componentView.classes}}"></dbs-expandables>
+</ng-template>
+
+<ng-template #carouselView let-sectionKey="key">
+  <dbs-carousel [carouselRef]="sectionKey" [slides]="getSlides(sectionKey)"></dbs-carousel>
+</ng-template>
+
+<ng-template #flatNewsCnt let-data="data" let-viewStruct="viewStruct">
+  <div class="container">
+    <dbs-news [items]="parseNewsData(viewStruct, data)"></dbs-news>
+  </div>
+</ng-template>
+
+<ng-template #tableViewCnt let-data="data" let-viewStruct="viewStruct">
+  <div class="container">
+
+    <dbs-table-view [items]="data" [columns]="viewStruct.columns" [displayedColumns]="viewStruct.displayedColumns"
+                    [pageSizeOptions]="viewStruct.pageSizeOptions" [filterItems]="viewStruct.filterItems"></dbs-table-view>
+  </div>
+</ng-template>
+
+<ng-template #markDownView let-data="data">
+  <div class="container">
+    <ng-container *ngFor="let content of data">
+      <markdown class="">{{content.markdown}}</markdown>
+    </ng-container>
+  </div>
+</ng-template>
+

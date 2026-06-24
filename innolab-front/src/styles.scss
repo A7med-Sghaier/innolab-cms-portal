@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import './assets/styles/scss/sizes.scss';
+@import './assets/styles/scss/dimensions.scss';
+@import './assets/styles/scss/spacing.scss';
+
+/* mixin for multiline */
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 3){
+  overflow: hidden;
+  position: relative;
+  line-height: $lineHeight;
+  max-height: $lineHeight * $lineCount;
+  text-align: justify;
+  margin-right: -1em;
+  padding-right: 1em;
+  &:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+  }
+}
+
+body{
+  margin: 0;
+}
+
+
+
+.no{
+  &-decoration{
+    text-decoration: none !important;
+  }
+}
+
+.round{
+  border-radius: 50% !important;
+}
+
+
+
+.card-project-short-desc{
+  p{
+
+   // @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 3);
+
+    /*
+    line-height:1.2em;
+    height:4.8em;
+    // white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    margin-right: -1em;
+    padding-right: 1em;
+    &:before{
+      content: '...';
+      position: absolute;
+      //right: 0;
+      //bottom: 0;
+    }
+    */
+  }
+}

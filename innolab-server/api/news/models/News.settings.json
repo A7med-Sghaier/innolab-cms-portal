@@ -1,0 +1,43 @@
+{
+  "connection": "default",
+  "collectionName": "news",
+  "info": {
+    "name": "news",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "key": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "default": "",
+      "type": "date",
+      "required": true
+    },
+    "highlight": {
+      "default": "",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "type": "text"
+    },
+    "short_desc": {
+      "default": "",
+      "type": "text"
+    },
+    "autor": {
+      "default": "",
+      "type": "string"
+    },
+    "visible": {
+      "default": true,
+      "type": "boolean"
+    }
+  }
+}

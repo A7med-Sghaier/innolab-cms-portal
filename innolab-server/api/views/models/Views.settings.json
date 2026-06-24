@@ -1,0 +1,28 @@
+{
+  "connection": "default",
+  "collectionName": "views",
+  "info": {
+    "name": "views",
+    "description": "Menu"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "items": {
+      "default": "",
+      "type": "json",
+      "required": true
+    },
+    "key": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "default": "",
+      "type": "string",
+      "required": true
+    }
+  }
+}

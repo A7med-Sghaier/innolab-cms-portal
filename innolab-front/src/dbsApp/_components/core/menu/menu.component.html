@@ -1,0 +1,46 @@
+<mat-toolbar style="height: 64px; z-index: 9; top: 0;"
+             class="nav-top-menu nav-top-menu-shadow position-fixed nav-top-menu-bg-grau">
+
+  <mat-toolbar-row class="font-size-0-9 container"
+                   style="height: 64px">
+
+    <ng-container *ngTemplateOutlet="logoCnt"></ng-container>
+
+    <div class="container">
+      <div class="row">
+        <ng-container *ngFor="let item of menuItems">
+          <ng-template *ngTemplateOutlet="itemCnt; context: {$implicit: item}"></ng-template>
+          <ng-container *ngIf="item.subItems">
+            <ng-container *ngFor="let subItem of item.subItems.items">
+              <ng-container *ngIf="subItem.onTopMenu;">
+                <ng-template *ngTemplateOutlet="itemCnt; context: {$implicit: subItem}"></ng-template>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<ng-template #logoCnt>
+  <div class="d-flex align-items-center logo-container">
+    <!--
+    <img src="" class="logo">
+    -->
+  </div>
+</ng-template>
+
+<ng-template #itemCnt let-item>
+  <div  class="padding-10 nav-top-menu">
+    <a pageScroll
+       (pageScrollFinish)="scrollToTarget(item.key)"
+       [href]="'#'+item.key"
+       style="font-family: ''"
+       [ngClass]="{'active': selectedMenuItem === item.key}"
+       class="dbs-menu-item no-decoration text-uppercase transition-size font-museo-slab-300">{{item?.label?.text}}</a>
+    <div class="animated-line"></div>
+  </div>
+</ng-template>

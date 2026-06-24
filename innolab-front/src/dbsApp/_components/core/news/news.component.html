@@ -1,0 +1,23 @@
+<ng-container>
+  <div class="container-fluid">
+    <ng-container *ngTemplateOutlet="newsCtn"></ng-container>
+  </div>
+</ng-container>
+
+
+<ng-template #newsCtn>
+  <div class="row">
+    <div class="jumbotron- margin-0 top-padding-10 bottom-padding-10 col-12 bg-white- border- border-light- shadow-sm-">
+      <ng-container *ngFor="let item of items">
+        <ng-container *ngTemplateOutlet="oneNewsCnt; context:{$implicit: item}"></ng-container>
+      </ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #oneNewsCnt let-item>
+  <div class="row bottom-puffer-15 bg-white border border-light border-left-0 border-right-0 border-top-0 shadow-sm">
+    <markdown class="col-10" [innerHtml]="item.title"></markdown>
+    <div class="col-2 text-right">{{item.date | date}}</div>
+  </div>
+</ng-template>

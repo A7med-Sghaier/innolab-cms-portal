@@ -1,0 +1,74 @@
+{
+  "connection": "default",
+  "collectionName": "team",
+  "info": {
+    "name": "teammember",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "key": {
+      "default": "key",
+      "type": "string",
+      "required": true
+    },
+    "category": {
+      "default": "professor",
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "professor",
+        "office",
+        "scientist",
+        "Alumni"
+      ]
+    },
+    "salutation": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "first_name": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "second_name": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "tel_office": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "default": "",
+      "type": "email",
+      "required": true
+    },
+    "room": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "default": "",
+      "type": "string"
+    },
+    "avatar": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}

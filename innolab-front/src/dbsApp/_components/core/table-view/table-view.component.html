@@ -1,0 +1,42 @@
+<ng-container [ngTemplateOutlet]="mainCnt">
+
+</ng-container>
+
+<ng-template #mainCnt>
+  <ng-container *ngIf="filterItems; then filterCnt"></ng-container>
+
+  <div class="mat-elevation-z8">
+    <ng-container [ngTemplateOutlet]="tableCnt"></ng-container>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</ng-template>
+
+<ng-template #tableCnt>
+  <table mat-table [dataSource]="dataSource" width="100%">
+
+    <ng-container *ngFor="let col of columns" matColumnDef={{col.key}}>
+      <th mat-header-cell *matHeaderCellDef> {{col.label}} </th>
+      <td mat-cell *matCellDef="let element"> {{element[col.key]}}</td>
+      <!--
+      <ng-container *ngTemplateOutlet="colCnt; context: {$implicit: column}"></ng-container>
+      -->
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</ng-template>
+
+<ng-template #filterCnt let-filterItems>
+  <div class="container-fluid">
+    <div class="row d-flex flex-wrap">
+      <ng-container *ngFor="let filter of filterItems">
+        <mat-form-field class="left-padding-15">
+          <input matInput (keyup)="applyFilter('', $event.target.value)" placeholder="{{filter.label}}">
+        </mat-form-field>
+      </ng-container>
+    </div>
+
+  </div>
+
+</ng-template>

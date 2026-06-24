@@ -1,0 +1,18 @@
+{
+  "host": "localhost",
+  "port": 12220,
+  "proxy": {
+    "enabled": true,
+    "host": "localhost",
+    "port": 1337
+  },
+  "autoReload": {
+    "enabled": false
+  },
+  "cron": {
+    "enabled": false
+  },
+  "admin": {
+    "autoOpen": false
+  }
+}

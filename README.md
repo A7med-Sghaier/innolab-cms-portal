@@ -50,7 +50,9 @@ nvm install
 nvm use
 ```
 
-If you previously installed dependencies with Node 10, remove them before reinstalling:
+This repository includes `.npmrc` with `legacy-peer-deps=true` because Angular 7 and its tooling use older peer dependency ranges that npm 8 otherwise rejects.
+
+If you previously installed dependencies with another Node/npm version, remove them before reinstalling:
 
 ```bash
 rm -rf innolab-server/node_modules innolab-front/node_modules

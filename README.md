@@ -37,10 +37,10 @@ This repository is a portfolio-ready cleanup of the original university project.
 
 ### Prerequisites
 
-This project was originally built with older Angular and Strapi versions, but current dependency resolution requires Node's modern `node:` module namespace. Use the repository `.nvmrc`:
+This project was originally built with older Angular and Strapi versions. Use the repository `.nvmrc`:
 
-- Node.js 16.x
-- npm 8.x
+- Node.js 10.x
+- npm 6.x
 - MongoDB running locally or a MongoDB connection URI
 
 With `nvm`:
@@ -50,9 +50,7 @@ nvm install
 nvm use
 ```
 
-This repository includes `.npmrc` with `legacy-peer-deps=true` because Angular 7 and its tooling use older peer dependency ranges that npm 8 otherwise rejects. The backend also pins `undici` through npm `overrides` to avoid installing versions that require newer Web Streams globals than Node 16 provides. The frontend pins `node-sass@6.0.1`; do not install `node-sass@4`, because it requires old Python 2/node-gyp behavior and fails on Node 16.
-
-If you previously installed dependencies with another Node/npm version or manually installed `node-sass@4`, remove them before reinstalling:
+If you previously installed dependencies with another Node/npm version, remove them before reinstalling:
 
 ```bash
 rm -rf innolab-server/node_modules innolab-front/node_modules

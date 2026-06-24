@@ -14,7 +14,7 @@
     "lint:server": "npm --prefix innolab-server run lint"
   },
   "engines": {
-    "node": "16.x",
-    "npm": ">=8 <9"
+    "node": "10.x",
+    "npm": "6.x"
   }
 }

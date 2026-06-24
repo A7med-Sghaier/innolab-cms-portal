@@ -57,7 +57,7 @@ rm -rf innolab-server/node_modules innolab-front/node_modules
 rm -f innolab-server/package-lock.json innolab-front/package-lock.json
 ```
 
-The backend entrypoint includes a small Node 10 compatibility shim for transitive dependencies that import built-in modules with the newer `node:` prefix.
+The backend entrypoint includes a small Node 10 compatibility shim for modern transitive dependencies that import built-in modules with the newer `node:` prefix or load optional `undici` helpers during startup.
 
 ### Configure Environment
 

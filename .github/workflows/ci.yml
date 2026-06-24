@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  frontend:
+    name: Frontend build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use legacy Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '10'
+
+      - name: Install frontend dependencies
+        working-directory: innolab-front
+        run: npm install
+
+      - name: Build frontend
+        working-directory: innolab-front
+        run: npm run build

@@ -37,13 +37,25 @@ This repository is a portfolio-ready cleanup of the original university project.
 
 ### Prerequisites
 
-This project was originally built with older Angular and Strapi versions. For best compatibility, use:
+This project was originally built with older Angular and Strapi versions, but current dependency resolution requires Node's modern `node:` module namespace. Use the repository `.nvmrc`:
 
-- Node.js 10.x
-- npm 6.x
+- Node.js 16.x
+- npm 8.x
 - MongoDB running locally or a MongoDB connection URI
 
-Modern Node.js versions may not run the legacy Angular/Strapi toolchain without additional migration work.
+With `nvm`:
+
+```bash
+nvm install
+nvm use
+```
+
+If you previously installed dependencies with Node 10, remove them before reinstalling:
+
+```bash
+rm -rf innolab-server/node_modules innolab-front/node_modules
+rm -f innolab-server/package-lock.json innolab-front/package-lock.json
+```
 
 ### Configure Environment
 

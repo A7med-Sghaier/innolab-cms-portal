@@ -50,7 +50,7 @@ nvm install
 nvm use
 ```
 
-This repository includes `.npmrc` with `legacy-peer-deps=true` because Angular 7 and its tooling use older peer dependency ranges that npm 8 otherwise rejects.
+This repository includes `.npmrc` with `legacy-peer-deps=true` because Angular 7 and its tooling use older peer dependency ranges that npm 8 otherwise rejects. The backend also pins `undici` through npm `overrides` to avoid installing versions that require newer Web Streams globals than Node 16 provides.
 
 If you previously installed dependencies with another Node/npm version, remove them before reinstalling:
 

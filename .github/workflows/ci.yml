@@ -21,7 +21,7 @@ jobs:
 
       - name: Install frontend dependencies
         working-directory: innolab-front
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Build frontend
         working-directory: innolab-front

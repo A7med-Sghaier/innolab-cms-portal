@@ -28,6 +28,9 @@
     "strapi-hook-mongoose": "3.0.0-alpha.14.3",
     "stream-to-array": "^2.3.0"
   },
+  "overrides": {
+    "undici": "5.28.5"
+  },
   "strapi": {
     "packageManager": "npm",
     "uuid": "779efcc6-49dd-4ec7-b96e-26f162ee02a5"

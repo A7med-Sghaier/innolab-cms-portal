@@ -41,7 +41,7 @@ This project was originally built with older Angular and Strapi versions. Use th
 
 - Node.js 10.x
 - npm 6.x
-- MongoDB running locally or a MongoDB connection URI
+- MongoDB running locally on `127.0.0.1:27017`, or a MongoDB instance configured through environment variables
 
 With `nvm`:
 
@@ -67,7 +67,15 @@ Copy the sample backend environment file:
 cp innolab-server/.env.example innolab-server/.env
 ```
 
-Update the values for your local MongoDB setup.
+For local development, the backend defaults to:
+
+```text
+DATABASE_HOST=127.0.0.1
+DATABASE_PORT=27017
+DATABASE_NAME=innolab_dev
+```
+
+Leave `DATABASE_URI` empty unless you intentionally use a full MongoDB connection string in another environment.
 
 ### Install and Run Backend
 

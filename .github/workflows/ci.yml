@@ -14,10 +14,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use legacy Node.js
+      - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '10'
+          node-version: '16'
 
       - name: Install frontend dependencies
         working-directory: innolab-front

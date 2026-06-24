@@ -1,0 +1,20 @@
+{
+  "name": "innolab-cms-portal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CMS-style website portal with an Angular frontend and Strapi/Node.js backend.",
+  "scripts": {
+    "install:front": "npm --prefix innolab-front install",
+    "install:server": "npm --prefix innolab-server install",
+    "install:all": "npm run install:server && npm run install:front",
+    "start:front": "npm --prefix innolab-front start",
+    "start:server": "npm --prefix innolab-server start",
+    "build:front": "npm --prefix innolab-front run build",
+    "lint:front": "npm --prefix innolab-front run lint",
+    "lint:server": "npm --prefix innolab-server run lint"
+  },
+  "engines": {
+    "node": "10.x",
+    "npm": "6.x"
+  }
+}

@@ -83,12 +83,24 @@ The Angular app defaults to:
 http://localhost:4200
 ```
 
+## Useful Commands
+
+From the repository root:
+
+```bash
+npm run install:all
+npm run start:server
+npm run start:front
+npm run build:front
+npm run lint:front
+```
+
 ## Security and Publishing Notes
 
 - Database dumps are intentionally excluded from the repository.
 - MongoDB credentials are loaded from environment variables.
 - Session and CSRF secrets are loaded from environment variables.
-- The repository should remain private until ownership, assets, and sample content are fully confirmed as safe for public release.
+- `innolab-server/public/uploads/` has been confirmed safe to publish.
 - If realistic demo data is needed, create sanitized seed data instead of publishing original database dumps.
 
 ## Portfolio Positioning

@@ -50,9 +50,9 @@ nvm install
 nvm use
 ```
 
-This repository includes `.npmrc` with `legacy-peer-deps=true` because Angular 7 and its tooling use older peer dependency ranges that npm 8 otherwise rejects. The backend also pins `undici` through npm `overrides` to avoid installing versions that require newer Web Streams globals than Node 16 provides.
+This repository includes `.npmrc` with `legacy-peer-deps=true` because Angular 7 and its tooling use older peer dependency ranges that npm 8 otherwise rejects. The backend also pins `undici` through npm `overrides` to avoid installing versions that require newer Web Streams globals than Node 16 provides. The frontend pins `node-sass@6.0.1`; do not install `node-sass@4`, because it requires old Python 2/node-gyp behavior and fails on Node 16.
 
-If you previously installed dependencies with another Node/npm version, remove them before reinstalling:
+If you previously installed dependencies with another Node/npm version or manually installed `node-sass@4`, remove them before reinstalling:
 
 ```bash
 rm -rf innolab-server/node_modules innolab-front/node_modules

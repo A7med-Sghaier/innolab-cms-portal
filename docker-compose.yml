@@ -1,0 +1,54 @@
+services:
+  mongo:
+    image: mongo:4.2
+    container_name: innolab-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  server:
+    platform: linux/amd64
+    build:
+      context: ./innolab-server
+    container_name: innolab-server
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    environment:
+      NODE_ENV: development
+      HOST: 0.0.0.0
+      PORT: 12220
+      PROXY_HOST: 0.0.0.0
+      PROXY_PORT: 1337
+      DATABASE_HOST: mongo
+      DATABASE_PORT: 27017
+      DATABASE_NAME: innolab_dev
+      DATABASE_SSL: "false"
+    ports:
+      - "12220:12220"
+      - "1337:1337"
+    volumes:
+      - ./innolab-server:/app
+      - server_node_modules:/app/node_modules
+
+  front:
+    platform: linux/amd64
+    build:
+      context: ./innolab-front
+    container_name: innolab-front
+    restart: unless-stopped
+    depends_on:
+      - server
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./innolab-front:/app
+      - front_node_modules:/app/node_modules
+    command: npm start -- --host 0.0.0.0 --disable-host-check
+
+volumes:
+  mongo_data:
+  server_node_modules:
+  front_node_modules:

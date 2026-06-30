@@ -11,7 +11,11 @@
     "start:server": "npm --prefix innolab-server start",
     "build:front": "npm --prefix innolab-front run build",
     "lint:front": "npm --prefix innolab-front run lint",
-    "lint:server": "npm --prefix innolab-server run lint"
+    "lint:server": "npm --prefix innolab-server run lint",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f",
+    "docker:clean": "docker compose down -v"
   },
   "engines": {
     "node": "10.x",

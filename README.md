@@ -10,6 +10,7 @@ This repository is a portfolio-ready cleanup of the original university project.
 - Angular component architecture for rendering content sections, cards, tables, news, and carousel views.
 - Strapi-based CMS backend with custom content types for articles, projects, studies, students, team members, and page views.
 - MongoDB configuration moved to environment variables for safer public repository publishing.
+- Docker Compose workflow added for repeatable local startup across machines.
 - Database dumps and generated artifacts excluded from version control.
 - GitHub Actions workflow added for repeatable frontend build validation.
 
@@ -20,20 +21,68 @@ This repository is a portfolio-ready cleanup of the original university project.
 | Frontend | Angular 7, TypeScript, SCSS, Angular Material, Bootstrap |
 | Backend | Node.js, Strapi, Koa, REST APIs |
 | Database | MongoDB via `strapi-hook-mongoose` |
+| Local Runtime | Docker Compose, Node.js 10, MongoDB 4.2 |
 | Tooling | npm scripts, GitHub Actions |
 
 ## Repository Structure
 
 ```text
 .
+├── docker-compose.yml  # Runs frontend, backend, and MongoDB together
 ├── innolab-front/      # Angular public website
 ├── innolab-server/     # Strapi CMS and REST API
+├── scripts/            # Local development helper scripts
 ├── db_dumps/           # Kept empty; database dumps are intentionally excluded
 ├── docs/               # Architecture and publishing notes
 └── .github/workflows/  # CI workflow
 ```
 
-## Getting Started
+## Getting Started With Docker
+
+Docker is the recommended local setup because the project uses older Angular, Strapi, Node.js, and MongoDB versions.
+
+### Prerequisites
+
+- Docker Desktop, or Docker Engine with the Docker Compose plugin
+
+### Run All Apps
+
+From the repository root:
+
+```bash
+npm run docker:up
+```
+
+Or run the helper script directly:
+
+```bash
+bash scripts/start-docker.sh
+```
+
+The first run builds the frontend and backend images, installs dependencies inside Docker, starts MongoDB, and then starts both apps.
+
+### Local URLs
+
+```text
+Frontend: http://localhost:4200
+Backend:  http://localhost:12220
+MongoDB:  localhost:27017
+```
+
+### Docker Commands
+
+```bash
+npm run docker:up      # Build and start all services
+npm run docker:logs    # Follow service logs
+npm run docker:down    # Stop services, keep MongoDB data volume
+npm run docker:clean   # Stop services and remove MongoDB/node_modules volumes
+```
+
+If Docker Desktop on Apple Silicon has trouble with old `node-sass` binaries, keep the Compose `platform: linux/amd64` settings. They are intentional for this legacy Node 10 stack.
+
+## Manual Local Setup
+
+Use this only if you want to run the apps without Docker.
 
 ### Prerequisites
 
@@ -115,6 +164,8 @@ npm run start:server
 npm run start:front
 npm run build:front
 npm run lint:front
+npm run docker:up
+npm run docker:down
 ```
 
 ## Security and Publishing Notes
@@ -127,4 +178,4 @@ npm run lint:front
 
 ## Portfolio Positioning
 
-Full-stack CMS portal demonstrating Angular, Node.js, Strapi, MongoDB, content modeling, REST integration, and safe repository cleanup for public portfolio presentation.
+Full-stack CMS portal demonstrating Angular, Node.js, Strapi, MongoDB, content modeling, REST integration, Dockerized local development, and safe repository cleanup for public portfolio presentation.

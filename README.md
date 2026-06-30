@@ -64,10 +64,13 @@ The first run builds the frontend and backend images, installs dependencies insi
 ### Local URLs
 
 ```text
-Frontend: http://localhost:4200
-Backend:  http://localhost:12220
-MongoDB:  localhost:27017
+Frontend:          http://localhost:4200
+Backend:           http://localhost:12220
+MongoDB from host: localhost:27018
+MongoDB in Docker: mongo:27017
 ```
+
+The Docker MongoDB host port is `27018` on purpose so it does not conflict with a MongoDB service already running on your Mac at `27017`.
 
 ### Docker Commands
 

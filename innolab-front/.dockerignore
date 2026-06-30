@@ -1,0 +1,11 @@
+node_modules
+dist
+.tmp
+tmp
+coverage
+npm-debug.log
+package-lock.json
+.git
+.idea
+.DS_Store
+.sass-cache

@@ -4,9 +4,14 @@ services:
     container_name: innolab-mongo
     restart: unless-stopped
     ports:
-      - "27017:27017"
+      - "27018:27017"
     volumes:
       - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongo", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
   server:
     platform: linux/amd64
@@ -15,7 +20,8 @@ services:
     container_name: innolab-server
     restart: unless-stopped
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
     environment:
       NODE_ENV: development
       HOST: 0.0.0.0

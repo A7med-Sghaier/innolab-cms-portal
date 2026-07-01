@@ -70,6 +70,35 @@ run_compose() {
   fi
 }
 
+warn_about_local_env_file() {
+  if [ ! -f "$ROOT_DIR/.env.docker" ]; then
+    return 0
+  fi
+
+  if grep -Eq '^(username|password|authenticationDatabase)=(null|undefined)$' "$ROOT_DIR/.env.docker"; then
+    echo "Warning: .env.docker contains null Mongo credential values." >&2
+    echo "This file is not needed for Docker startup and is ignored by this script." >&2
+    echo "If you previously sourced it in your shell, close the terminal or unset those variables." >&2
+  fi
+}
+
+clear_unsafe_local_database_env() {
+  # Avoid leaking locally sourced lowercase values such as username=null into legacy Strapi startup.
+  unset username password authenticationDatabase || true
+
+  # Docker Compose sets the required DATABASE_* values explicitly in docker-compose.yml.
+  # Empty/null credentials should not be passed to the app because Strapi alpha treats them as real auth values.
+  case "${DATABASE_USERNAME:-}" in
+    ""|null|undefined) unset DATABASE_USERNAME || true ;;
+  esac
+  case "${DATABASE_PASSWORD:-}" in
+    ""|null|undefined) unset DATABASE_PASSWORD || true ;;
+  esac
+  case "${DATABASE_AUTHENTICATION_DATABASE:-}" in
+    ""|null|undefined) unset DATABASE_AUTHENTICATION_DATABASE || true ;;
+  esac
+}
+
 if ! command -v docker >/dev/null 2>&1; then
   echo "Docker is not installed or not available in PATH." >&2
   echo "Install Docker Desktop, then run this script again." >&2
@@ -89,6 +118,9 @@ if ! docker info >/dev/null 2>&1; then
   echo "Start Docker Desktop, then run this script again." >&2
   exit 1
 fi
+
+warn_about_local_env_file
+clear_unsafe_local_database_env
 
 echo "Detected OS: $OS_NAME"
 if [ "$COMPOSE_KIND" = "plugin" ]; then

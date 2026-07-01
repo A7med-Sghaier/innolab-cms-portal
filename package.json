@@ -12,10 +12,10 @@
     "build:front": "npm --prefix innolab-front run build",
     "lint:front": "npm --prefix innolab-front run lint",
     "lint:server": "npm --prefix innolab-server run lint",
-    "docker:up": "docker compose up --build",
-    "docker:down": "docker compose down",
-    "docker:logs": "docker compose logs -f",
-    "docker:clean": "docker compose down -v"
+    "docker:up": "sh scripts/start-docker.sh up",
+    "docker:down": "sh scripts/start-docker.sh down",
+    "docker:logs": "sh scripts/start-docker.sh logs",
+    "docker:clean": "sh scripts/start-docker.sh clean"
   },
   "engines": {
     "node": "10.x",

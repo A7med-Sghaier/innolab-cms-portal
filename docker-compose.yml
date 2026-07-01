@@ -32,6 +32,9 @@ services:
       DATABASE_PORT: 27017
       DATABASE_NAME: innolab_dev
       DATABASE_SSL: "false"
+      SESSION_SECRET_1: docker-local-session-secret-one
+      SESSION_SECRET_2: docker-local-session-secret-two
+      CSRF_SECRET: docker-local-csrf-secret
     ports:
       - "12220:12220"
       - "1337:1337"

@@ -3,12 +3,15 @@ services:
     image: mongo:4.2
     container_name: innolab-mongo
     restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: innolab
+      MONGO_INITDB_ROOT_PASSWORD: innolab-local-password
     ports:
       - "27018:27017"
     volumes:
       - mongo_data:/data/db
     healthcheck:
-      test: ["CMD", "mongo", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      test: ["CMD", "mongo", "--quiet", "--username", "innolab", "--password", "innolab-local-password", "--authenticationDatabase", "admin", "--eval", "db.adminCommand('ping').ok"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -31,6 +34,9 @@ services:
       DATABASE_HOST: mongo
       DATABASE_PORT: 27017
       DATABASE_NAME: innolab_dev
+      DATABASE_USERNAME: innolab
+      DATABASE_PASSWORD: innolab-local-password
+      DATABASE_AUTHENTICATION_DATABASE: admin
       DATABASE_SSL: "false"
       SESSION_SECRET_1: docker-local-session-secret-one
       SESSION_SECRET_2: docker-local-session-secret-two

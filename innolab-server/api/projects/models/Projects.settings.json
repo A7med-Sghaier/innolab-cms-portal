@@ -25,9 +25,8 @@
       "required": true
     },
     "image": {
-      "model": "file",
-      "via": "related",
-      "plugin": "upload",
+      "default": "",
+      "type": "string",
       "required": false
     },
     "short_desc": {

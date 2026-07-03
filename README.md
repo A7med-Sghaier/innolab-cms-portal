@@ -4,16 +4,11 @@ InnoLab CMS Portal is a university content-management website built with an Angu
 
 This repository is a portfolio-ready cleanup of the original university project. The cleanup focuses on safe publishing, clearer setup, maintainable repository structure, and documentation that makes the engineering decisions easy to review.
 
-## Live Visual Reference
+## Live Site Reference
 
-The original public InnoLab website is available at [https://innolab.ifi.lmu.de](https://innolab.ifi.lmu.de). The local Docker demo uses a small, portfolio-safe seed dataset and references public live-site imagery by URL instead of copying image files into this repository.
+The original public InnoLab website is available at [https://innolab.ifi.lmu.de](https://innolab.ifi.lmu.de).
 
-| Demo reference | Live image source |
-| --- | --- |
-| ![Connectome Explorer](https://innolab.ifi.lmu.de/images/semesters/teaser_connectome_2.png) | `teaser_connectome_2.png` |
-| ![ADeA Analytics](https://innolab.ifi.lmu.de/images/semesters/teaser_adea.png) | `teaser_adea.png` |
-| ![Sustainability Data View](https://innolab.ifi.lmu.de/images/semesters/sustainability_2.png) | `sustainability_2.png` |
-| ![Mobility Visualization](https://innolab.ifi.lmu.de/images/semesters/mobility.png) | `mobility.png` |
+This repository is not presented as the official LMU/InnoLab source release. The local Docker demo uses sanitized sample records and neutral placeholder images. Copyrighted live-site images, database dumps, and production content are not copied into this repository.
 
 ## Portfolio Value
 
@@ -24,6 +19,7 @@ The original public InnoLab website is available at [https://innolab.ifi.lmu.de]
 - Shell-script Docker workflow added for repeatable local startup across macOS and Linux.
 - Portfolio-safe demo seed data added for local Docker startup.
 - Database dumps and generated artifacts excluded from version control.
+- Copyright-sensitive media replaced with neutral demo placeholders.
 - GitHub Actions workflow added for repeatable frontend build validation.
 
 ## Tech Stack
@@ -97,7 +93,7 @@ The seed data:
 
 - creates a minimal `dbs_view` record so the frontend has a page response to render;
 - inserts sample project records;
-- references public images from the live InnoLab website by URL instead of copying image files into this repository.
+- uses neutral placeholder image URLs instead of copyrighted live-site media.
 
 To rerun the seed from a clean database:
 
@@ -227,11 +223,12 @@ npm run lint:front
 
 - Original database dumps are intentionally excluded from the repository.
 - Demo data is sanitized and portfolio-safe.
-- Public live-site images are referenced by URL; the image files are not copied into this repository.
+- Copyrighted live-site images are not copied, embedded, or used as seed media.
+- Neutral placeholder images are used for local demo records.
 - MongoDB credentials are local Docker development credentials only.
 - Session and CSRF secrets are local Docker development defaults only.
-- Review [docs/publish-checklist.md](docs/publish-checklist.md) before changing the repository visibility to public.
-- If realistic production-like demo data is needed later, create sanitized seed data instead of publishing original database dumps.
+- Review [docs/publish-checklist.md](docs/publish-checklist.md) before changing repository metadata or demo content.
+- If realistic production-like demo data is needed later, create sanitized original seed data or use assets with explicit permission.
 
 ## Portfolio Positioning
 

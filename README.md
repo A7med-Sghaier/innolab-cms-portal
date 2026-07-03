@@ -21,7 +21,7 @@ The original public InnoLab website is available at [https://innolab.ifi.lmu.de]
 - Angular component architecture for rendering content sections, cards, tables, news, and carousel views.
 - Strapi-based CMS backend with custom content types for articles, projects, studies, students, team members, and page views.
 - MongoDB configuration moved to environment variables for safer public repository publishing.
-- Docker Compose workflow added for repeatable local startup across machines.
+- Shell-script Docker workflow added for repeatable local startup across macOS and Linux.
 - Portfolio-safe demo seed data added for local Docker startup.
 - Database dumps and generated artifacts excluded from version control.
 - GitHub Actions workflow added for repeatable frontend build validation.
@@ -34,12 +34,13 @@ The original public InnoLab website is available at [https://innolab.ifi.lmu.de]
 | Backend | Node.js, Strapi, Koa, REST APIs |
 | Database | MongoDB via `strapi-hook-mongoose` |
 | Local Runtime | Docker Compose, Node.js 10, MongoDB 4.2 |
-| Tooling | npm scripts, GitHub Actions |
+| Tooling | Shell scripts, npm scripts, GitHub Actions |
 
 ## Repository Structure
 
 ```text
 .
+├── run.sh                   # Main local Docker entrypoint
 ├── docker-compose.yml       # Runs frontend, backend, and MongoDB together
 ├── innolab-front/           # Angular public website
 ├── innolab-server/          # Strapi CMS and REST API
@@ -56,21 +57,23 @@ Docker is the recommended local setup because the project uses older Angular, St
 
 ### Prerequisites
 
-- Docker Desktop, or Docker Engine with the Docker Compose plugin
+- Docker Desktop, or Docker Engine with Docker Compose support
 
 ### Run All Apps
 
 From the repository root:
 
 ```bash
-npm run docker:up
+sh run.sh up
 ```
 
-Or run the helper script directly:
+Or simply:
 
 ```bash
-bash scripts/start-docker.sh
+sh run.sh
 ```
+
+The shell script detects the operating system and chooses the right Docker Compose command. On macOS it prefers `docker-compose`; on Linux it prefers `docker compose` and falls back when needed.
 
 The first run builds the frontend and backend images, installs dependencies inside Docker, starts MongoDB, seeds demo content, and then starts both apps.
 
@@ -99,8 +102,8 @@ The seed data:
 To rerun the seed from a clean database:
 
 ```bash
-npm run docker:clean
-npm run docker:up
+sh run.sh clean
+sh run.sh up
 ```
 
 Verify the seeded API response:
@@ -118,11 +121,15 @@ docker-compose exec mongo mongo -u innolab -p innolab-local-password --authentic
 ### Docker Commands
 
 ```bash
-npm run docker:up      # Build and start all services
-npm run docker:logs    # Follow service logs
-npm run docker:down    # Stop services, keep MongoDB data volume
-npm run docker:clean   # Stop services and remove MongoDB/node_modules volumes
+sh run.sh up       # Build and start all services
+sh run.sh logs     # Follow service logs
+sh run.sh down     # Stop services, keep MongoDB data volume
+sh run.sh clean    # Stop services and remove MongoDB/node_modules volumes
+sh run.sh restart  # Stop, rebuild, and start again
+sh run.sh ps       # Show container status
 ```
+
+The `npm run docker:*` commands are kept as aliases for convenience, but the shell script is the recommended workflow.
 
 If Docker Desktop on Apple Silicon has trouble with old `node-sass` binaries, keep the Compose `platform: linux/amd64` settings. They are intentional for this legacy Node 10 stack.
 
@@ -205,13 +212,15 @@ http://localhost:4200
 From the repository root:
 
 ```bash
+sh run.sh up
+sh run.sh logs
+sh run.sh down
+sh run.sh clean
 npm run install:all
 npm run start:server
 npm run start:front
 npm run build:front
 npm run lint:front
-npm run docker:up
-npm run docker:down
 ```
 
 ## Security and Publishing Notes

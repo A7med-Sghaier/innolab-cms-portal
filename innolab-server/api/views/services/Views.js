@@ -205,8 +205,18 @@ module.exports = {
       .findOne(_.pick(params, _.keys(Views.schema.paths)))
       .populate(populate);
 
+    if (!view) {
+      return {
+        key: params && params.key ? params.key : '',
+        label: params && params.key ? params.key : '',
+        items: [],
+        required_views: []
+      };
+    }
+
     let dbsView = JSON.parse(JSON.stringify(view));
     dbsView['required_views'] = [];
+    dbsView.items = Array.isArray(dbsView.items) ? dbsView.items : [];
 
     dbsView.items.forEach((item, itemIndex) => {
       if (item.hide) {
@@ -278,62 +288,40 @@ module.exports = {
 
     if (target.subItems && target.subItems.items) {
       target.subItems.items.forEach((subItem, subItemIndex) => {
+        if (subItem.hide) {
+          delete target.subItems.items[subItemIndex];
+          return;
+        }
+
         strapi.services['views'].insertData(mainView, resolvers, subItem);
       });
     }
   },
 
-  addRequiredView: (target, itemView, resolvers) => {
-    if (itemView && itemView.key) {
-      resolvers.push(strapi.services['componentview'].fetch({key: itemView.key})
-          .then( structure => {
-            if(target && !target.find(view => view && view.key === itemView.key)) {
-              return target.push(structure);
-            }
-            return;
-          })
-      );
-    }
-
-    if (itemView && itemView.group &&  itemView.group.componentView &&  itemView.group.componentView.key) {
-      resolvers.push( strapi.services['componentview'].fetch({key: itemView.group.componentView.key})
-          .then( structure => {
-            if(target && !target.find(view => view.key === itemView.group.componentView.key)) {
-              return target.push(structure);
-            }
-            return null;
-          })
-      );
-    }
+  addRequiredView: (requiredViews, view, resolvers) => {
+    requiredViews.push(view.key);
+    resolvers.push( strapi.services['views'].initCustomView({key: view.key})
+      .then( data => {
+        view['items'] = data.items;
+      })
+    );
   },
 
-  extractGroupTitle: (groupBy, object) => {
-    let title = '';
-    switch (groupBy) {
-      case 'semester':
-        const date = new Date(object.create_date);
-        const month = date.getMonth();
-        title = 'SS ' + date.getFullYear().toString();
-        if ( month < 3 ) {
-          title = 'WS ' + (date.getFullYear() - 1).toString().slice(2,4) + '/' + date.getFullYear().toString().slice(2,4);
-        }
-
-        if ( month > 8 ) {
-          title = 'WS ' + date.getFullYear().toString().slice(2,4) + '/' + (date.getFullYear() + 1).toString().slice(2,4);
-        }
-        break;
-    }
-    return title;
+  sortDataBy: (attribute, data) => {
+    return data.sort((item1, item2) => {
+      const d1 = strapi.services['views'].extractGroupTitle(attribute, item1);
+      const d2 = strapi.services['views'].extractGroupTitle(attribute, item2);
+      return d1.localeCompare(d2);
+    });
   },
 
-  sortDataBy: (sortBy, data) => {
-    switch (sortBy) {
-      case 'semester':
-        data = data.sort((a,b) => (new Date(b.create_date) - new Date(a.create_date)));
-        break;
+  extractGroupTitle: (attribute, item) => {
+    if (!attribute.includes('.')) {
+      return item[attribute];
     }
 
-    return data;
+    let nextAttribute = attribute.split('.')[0];
+    attribute = attribute.substring(attribute.indexOf('.') + 1);
+    return strapi.services['views'].extractGroupTitle(attribute, item[nextAttribute]);
   }
-
 };

@@ -69,7 +69,49 @@ function sanitizeDatabaseConfig() {
   });
 }
 
+function sanitizeLegacyUploadRelations() {
+  const apiDir = path.join(__dirname, 'api');
+  if (!fs.existsSync(apiDir)) {
+    return;
+  }
+
+  fs.readdirSync(apiDir).forEach(function sanitizeApi(apiName) {
+    const modelsDir = path.join(apiDir, apiName, 'models');
+    if (!fs.existsSync(modelsDir)) {
+      return;
+    }
+
+    fs.readdirSync(modelsDir).forEach(function sanitizeModel(fileName) {
+      if (path.extname(fileName) !== '.json') {
+        return;
+      }
+
+      const modelPath = path.join(modelsDir, fileName);
+      const modelConfig = JSON.parse(fs.readFileSync(modelPath, 'utf8'));
+      const attributes = modelConfig.attributes || {};
+      let changed = false;
+
+      Object.keys(attributes).forEach(function sanitizeAttribute(attributeName) {
+        const attribute = attributes[attributeName];
+        if (attribute && attribute.plugin === 'upload' && attribute.model === 'file') {
+          attributes[attributeName] = {
+            default: '',
+            type: 'string',
+            required: false
+          };
+          changed = true;
+        }
+      });
+
+      if (changed) {
+        fs.writeFileSync(modelPath, JSON.stringify(modelConfig, null, 2) + '\n');
+      }
+    });
+  });
+}
+
 sanitizeDatabaseConfig();
+sanitizeLegacyUploadRelations();
 
 // Some modern transitive dependencies use APIs/syntax that Node 10 cannot load.
 // Normalize `node:` built-in imports and provide a minimal `undici` placeholder

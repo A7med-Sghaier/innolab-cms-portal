@@ -2,8 +2,8 @@
   "name": "innolab-cms-portal",
   "version": "1.0.0",
   "private": true,
-  "description": "CMS-style website portal with an Angular frontend and Strapi/Node.js backend.",
-  "homepage": "https://innolab.ifi.lmu.de",
+  "description": "Copyright-safe portfolio CMS portal with an Angular frontend and Strapi/Node.js backend.",
+  "homepage": "https://github.com/A7med-Sghaier/innolab-cms-portal",
   "repository": {
     "type": "git",
     "url": "https://github.com/A7med-Sghaier/innolab-cms-portal.git"

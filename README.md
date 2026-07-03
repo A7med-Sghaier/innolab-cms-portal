@@ -230,6 +230,7 @@ npm run lint:front
 - Public live-site images are referenced by URL; the image files are not copied into this repository.
 - MongoDB credentials are local Docker development credentials only.
 - Session and CSRF secrets are local Docker development defaults only.
+- Review [docs/publish-checklist.md](docs/publish-checklist.md) before changing the repository visibility to public.
 - If realistic production-like demo data is needed later, create sanitized seed data instead of publishing original database dumps.
 
 ## Portfolio Positioning

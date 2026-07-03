@@ -79,7 +79,16 @@ module.exports = {
   /***********************  Customization  ***********************/
 
   initView: async(ctx, next) => {
-    return strapi.services.views.initCustomView(ctx.params);
+    try {
+      ctx.body = await strapi.services.views.initCustomView(ctx.params);
+    } catch (err) {
+      strapi.log.error(err);
+      ctx.status = 500;
+      ctx.body = {
+        error: 'Unable to initialize view',
+        message: err && err.message ? err.message : String(err)
+      };
+    }
   }
 
 };

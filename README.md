@@ -11,6 +11,7 @@ This repository is a portfolio-ready cleanup of the original university project.
 - Strapi-based CMS backend with custom content types for articles, projects, studies, students, team members, and page views.
 - MongoDB configuration moved to environment variables for safer public repository publishing.
 - Docker Compose workflow added for repeatable local startup across machines.
+- Portfolio-safe demo seed data added for local Docker startup.
 - Database dumps and generated artifacts excluded from version control.
 - GitHub Actions workflow added for repeatable frontend build validation.
 
@@ -28,13 +29,14 @@ This repository is a portfolio-ready cleanup of the original university project.
 
 ```text
 .
-├── docker-compose.yml  # Runs frontend, backend, and MongoDB together
-├── innolab-front/      # Angular public website
-├── innolab-server/     # Strapi CMS and REST API
-├── scripts/            # Local development helper scripts
-├── db_dumps/           # Kept empty; database dumps are intentionally excluded
-├── docs/               # Architecture and publishing notes
-└── .github/workflows/  # CI workflow
+├── docker-compose.yml       # Runs frontend, backend, and MongoDB together
+├── innolab-front/           # Angular public website
+├── innolab-server/          # Strapi CMS and REST API
+├── scripts/                 # Local development helper scripts
+├── db_dumps/                # Demo seed script; original DB dumps are excluded
+│   └── init-demo-data.js    # Portfolio-safe local demo data
+├── docs/                    # Architecture and publishing notes
+└── .github/workflows/       # CI workflow
 ```
 
 ## Getting Started With Docker
@@ -59,18 +61,48 @@ Or run the helper script directly:
 bash scripts/start-docker.sh
 ```
 
-The first run builds the frontend and backend images, installs dependencies inside Docker, starts MongoDB, and then starts both apps.
+The first run builds the frontend and backend images, installs dependencies inside Docker, starts MongoDB, seeds demo content, and then starts both apps.
 
 ### Local URLs
 
 ```text
 Frontend:          http://localhost:4200
-Backend:           http://localhost:12220
+Backend API:       http://localhost:12220
+Strapi server:     http://localhost:1337
 MongoDB from host: localhost:27018
 MongoDB in Docker: mongo:27017
 ```
 
 The Docker MongoDB host port is `27018` on purpose so it does not conflict with a MongoDB service already running on your Mac at `27017`.
+
+### Demo Seed Data
+
+The original MongoDB dump is not included because it may contain university-owned or non-public content. For local portfolio review, Docker seeds a small demo dataset from `db_dumps/init-demo-data.js` when the MongoDB volume is first created.
+
+The seed data:
+
+- creates a minimal `dbs_view` record so the frontend has a page response to render;
+- inserts sample project records;
+- references public images from the live InnoLab website by URL instead of copying image files into this repository.
+
+To rerun the seed from a clean database:
+
+```bash
+npm run docker:clean
+npm run docker:up
+```
+
+Verify the seeded API response:
+
+```bash
+curl http://localhost:12220/view/dbs_view
+```
+
+Verify project image references in MongoDB:
+
+```bash
+docker-compose exec mongo mongo -u innolab -p innolab-local-password --authenticationDatabase admin innolab_dev --quiet --eval "db.projects.find({}, {title: 1, image: 1}).pretty()"
+```
 
 ### Docker Commands
 
@@ -109,7 +141,7 @@ rm -rf innolab-server/node_modules innolab-front/node_modules
 rm -f innolab-server/package-lock.json innolab-front/package-lock.json
 ```
 
-The backend entrypoint includes a small Node 10 compatibility shim for modern transitive dependencies that import built-in modules with the newer `node:` prefix or load optional `undici` helpers during startup.
+The backend entrypoint includes compatibility shims for this legacy Strapi/Node 10 stack, including modern transitive dependency compatibility and local Docker startup fixes for old upload relations.
 
 ### Configure Environment
 
@@ -173,11 +205,12 @@ npm run docker:down
 
 ## Security and Publishing Notes
 
-- Database dumps are intentionally excluded from the repository.
-- MongoDB credentials are loaded from environment variables.
-- Session and CSRF secrets are loaded from environment variables.
-- `innolab-server/public/uploads/` has been confirmed safe to publish.
-- If realistic demo data is needed, create sanitized seed data instead of publishing original database dumps.
+- Original database dumps are intentionally excluded from the repository.
+- Demo data is sanitized and portfolio-safe.
+- Public live-site images are referenced by URL; the image files are not copied into this repository.
+- MongoDB credentials are local Docker development credentials only.
+- Session and CSRF secrets are local Docker development defaults only.
+- If realistic production-like demo data is needed later, create sanitized seed data instead of publishing original database dumps.
 
 ## Portfolio Positioning
 

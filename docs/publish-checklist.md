@@ -1,25 +1,26 @@
 # Public Release Checklist
 
-Use this checklist before changing the repository visibility from private to public.
+Use this checklist before changing public repository metadata or adding new demo content.
 
 ## Current Status
 
-- Repository is prepared for portfolio review.
+- Repository is public and prepared for portfolio review.
 - Local Docker startup is documented through `sh run.sh`.
 - Original MongoDB dumps are not included.
 - Local demo seed data is sanitized and stored in `db_dumps/init-demo-data.js`.
-- Live InnoLab images are referenced by public URL only; image files are not copied into this repository.
+- Copyrighted live-site images are not copied, embedded, or used as seed media.
+- Demo records use neutral placeholder images.
 - Local Docker credentials are development-only values.
 
-## Required Confirmation Before Public Release
+## Required Confirmation Before Public Release Changes
 
-Before making this repository public, confirm:
+Before adding new public-facing content, confirm:
 
-- The code is allowed to be published from an ownership/licensing perspective.
+- The code is allowed to remain public from an ownership/licensing perspective.
 - No employer, client, university-private, or confidential data is included.
-- The live URL `https://innolab.ifi.lmu.de` may be referenced from the README.
-- Referencing public live-site image URLs is acceptable for a portfolio repository.
-- The repository should remain a cleaned portfolio version, not an official LMU/InnoLab source release.
+- Any screenshots, images, logos, documents, database dumps, or media assets are either original, explicitly permitted, or safely replaced with placeholders.
+- The live URL `https://innolab.ifi.lmu.de` is used only as a public reference link.
+- The repository remains a cleaned portfolio version, not an official LMU/InnoLab source release.
 
 ## Technical Checks
 
@@ -31,7 +32,7 @@ sh run.sh up
 curl http://localhost:12220/view/dbs_view
 ```
 
-Expected result: the API returns a JSON view containing demo project data.
+Expected result: the API returns a JSON view containing demo project data with placeholder image URLs.
 
 Optional checks:
 
@@ -48,7 +49,7 @@ Because this is a legacy Angular 7 / Strapi alpha project, document any legacy w
 Recommended repository description:
 
 ```text
-Portfolio-ready Angular and Strapi CMS portal with Dockerized local setup and sanitized demo data.
+Dockerized Angular and Strapi CMS portal with sanitized demo data and copyright-safe placeholder media.
 ```
 
 Recommended topics:
@@ -63,6 +64,6 @@ Recommended website URL:
 https://innolab.ifi.lmu.de
 ```
 
-## Public Release Decision
+## Ongoing Safety Rule
 
-Do not make the repository public until the owner explicitly confirms public release is safe.
+Do not add live-site images, copyrighted screenshots, production database exports, or university-private content unless explicit permission is available.

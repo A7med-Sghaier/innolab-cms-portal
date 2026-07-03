@@ -4,6 +4,17 @@ InnoLab CMS Portal is a university content-management website built with an Angu
 
 This repository is a portfolio-ready cleanup of the original university project. The cleanup focuses on safe publishing, clearer setup, maintainable repository structure, and documentation that makes the engineering decisions easy to review.
 
+## Live Visual Reference
+
+The original public InnoLab website is available at [https://innolab.ifi.lmu.de](https://innolab.ifi.lmu.de). The local Docker demo uses a small, portfolio-safe seed dataset and references public live-site imagery by URL instead of copying image files into this repository.
+
+| Demo reference | Live image source |
+| --- | --- |
+| ![Connectome Explorer](https://innolab.ifi.lmu.de/images/semesters/teaser_connectome_2.png) | `teaser_connectome_2.png` |
+| ![ADeA Analytics](https://innolab.ifi.lmu.de/images/semesters/teaser_adea.png) | `teaser_adea.png` |
+| ![Sustainability Data View](https://innolab.ifi.lmu.de/images/semesters/sustainability_2.png) | `sustainability_2.png` |
+| ![Mobility Visualization](https://innolab.ifi.lmu.de/images/semesters/mobility.png) | `mobility.png` |
+
 ## Portfolio Value
 
 - Full-stack JavaScript application with a separated frontend and backend.

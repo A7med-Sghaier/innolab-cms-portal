@@ -10,6 +10,7 @@ services:
       - "27018:27017"
     volumes:
       - mongo_data:/data/db
+      - ./db_dumps/init-demo-data.js:/docker-entrypoint-initdb.d/init-demo-data.js:ro
     healthcheck:
       test: ["CMD", "mongo", "--quiet", "--username", "innolab", "--password", "innolab-local-password", "--authenticationDatabase", "admin", "--eval", "db.adminCommand('ping').ok"]
       interval: 10s

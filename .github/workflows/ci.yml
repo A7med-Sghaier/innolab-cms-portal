@@ -26,3 +26,23 @@ jobs:
       - name: Build frontend
         working-directory: innolab-front
         run: npm run build
+
+  backend:
+    name: Backend lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '10'
+
+      - name: Install backend dependencies
+        working-directory: innolab-server
+        run: npm install
+
+      - name: Lint backend
+        working-directory: innolab-server
+        run: npm run lint

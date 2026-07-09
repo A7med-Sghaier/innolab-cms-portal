@@ -2,7 +2,7 @@
   "name": "innolab-cms-portal",
   "version": "1.0.0",
   "private": true,
-  "description": "Copyright-safe portfolio CMS portal with an Angular frontend and Strapi/Node.js backend.",
+  "description": "Full-stack content management portal for a university innovation lab: an Angular public website driven by a Strapi/Node.js headless CMS with structured content models for projects, studies, news, and team pages.",
   "homepage": "https://github.com/A7med-Sghaier/innolab-cms-portal",
   "repository": {
     "type": "git",

@@ -1,5 +1,12 @@
 # InnoLab CMS Portal
 
+[![CI](https://github.com/A7med-Sghaier/innolab-cms-portal/actions/workflows/ci.yml/badge.svg)](https://github.com/A7med-Sghaier/innolab-cms-portal/actions/workflows/ci.yml)
+![Angular](https://img.shields.io/badge/Angular-7-DD0031?logo=angular&logoColor=white)
+![Strapi](https://img.shields.io/badge/Strapi-CMS-2F2E8B?logo=strapi&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-10.x-339933?logo=node.js&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4.2-47A248?logo=mongodb&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
+
 InnoLab CMS Portal is a university content-management website built with an Angular frontend and a Strapi/Node.js backend. It demonstrates a full-stack CMS architecture with structured content models, REST-driven page rendering, reusable Angular components, and MongoDB-backed administration.
 
 This repository is a portfolio-ready cleanup of the original university project. The cleanup focuses on safe publishing, clearer setup, maintainable repository structure, and documentation that makes the engineering decisions easy to review.

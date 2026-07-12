@@ -1,21 +1,47 @@
-# InnoLab CMS Portal
+<div align="center">
+
+<img src="./assets/banner.svg" width="100%" alt="InnoLab CMS Portal" />
+
+<br/>
+
+<a href="https://github.com/A7med-Sghaier/innolab-cms-portal">
+  <img src="https://readme-typing-svg.demolab.com?font=Segoe+UI&weight=600&size=20&pause=1000&color=2DD4BF&center=true&vCenter=true&width=760&lines=University+innovation-lab+CMS+portal;Angular+front+%C2%B7+Strapi+%2F+Node.js+back;Structured+content%3A+projects+%C2%B7+studies+%C2%B7+news;MongoDB+%C2%B7+Dockerized+local+development" alt="Angular public site driven by a Strapi / Node.js headless CMS." />
+</a>
+
+<br/><br/>
 
 [![CI](https://github.com/A7med-Sghaier/innolab-cms-portal/actions/workflows/ci.yml/badge.svg)](https://github.com/A7med-Sghaier/innolab-cms-portal/actions/workflows/ci.yml)
-![Angular](https://img.shields.io/badge/Angular-7-DD0031?logo=angular&logoColor=white)
-![Strapi](https://img.shields.io/badge/Strapi-CMS-2F2E8B?logo=strapi&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-10.x-339933?logo=node.js&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-4.2-47A248?logo=mongodb&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
+[![Angular](https://img.shields.io/badge/Angular-7-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io)
+[![Strapi](https://img.shields.io/badge/Strapi-CMS-4945FF?style=for-the-badge&logo=strapi&logoColor=white)](https://strapi.io)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com)
 
-InnoLab CMS Portal is a university content-management website built with an Angular frontend and a Strapi/Node.js backend. It demonstrates a full-stack CMS architecture with structured content models, REST-driven page rendering, reusable Angular components, and MongoDB-backed administration.
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Angular Material](https://img.shields.io/badge/Angular_Material-757575?style=flat-square&logo=angular&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white)
+![Koa](https://img.shields.io/badge/Koa-33333D?style=flat-square&logo=koa&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker_Compose-2496ED?style=flat-square&logo=docker&logoColor=white)
 
-This repository is a portfolio-ready cleanup of the original university project. The cleanup focuses on safe publishing, clearer setup, maintainable repository structure, and documentation that makes the engineering decisions easy to review.
+</div>
+
+A university content-management website: an **Angular** public front end rendering structured
+content from a **Strapi / Node.js** headless CMS, with custom content types for articles, projects,
+studies, students, and team members — all backed by **MongoDB**.
+
+> [!NOTE]
+> A **portfolio-safe cleanup** of the original LMU project: sanitized demo seed data, neutral
+> placeholder media, environment-driven config, and a one-command Docker workflow. Copyrighted
+> live-site assets and production dumps are intentionally excluded.
+
+<div align="center"><img src="./assets/divider.svg" width="70%" alt="" /></div>
 
 ## Live Site Reference
 
 The original public InnoLab website is available at [https://innolab.ifi.lmu.de](https://innolab.ifi.lmu.de).
 
 This repository is not presented as the official LMU/InnoLab source release. The local Docker demo uses sanitized sample records and neutral placeholder images. Copyrighted live-site images, database dumps, and production content are not copied into this repository.
+
+<div align="center"><img src="./assets/divider.svg" width="70%" alt="" /></div>
 
 ## Portfolio Value
 
@@ -29,6 +55,8 @@ This repository is not presented as the official LMU/InnoLab source release. The
 - Copyright-sensitive media replaced with neutral demo placeholders.
 - GitHub Actions workflow added for repeatable frontend build validation.
 
+<div align="center"><img src="./assets/divider.svg" width="70%" alt="" /></div>
+
 ## Tech Stack
 
 | Area | Technology |
@@ -38,6 +66,8 @@ This repository is not presented as the official LMU/InnoLab source release. The
 | Database | MongoDB via `strapi-hook-mongoose` |
 | Local Runtime | Docker Compose, Node.js 10, MongoDB 4.2 |
 | Tooling | Shell scripts, npm scripts, GitHub Actions |
+
+<div align="center"><img src="./assets/divider.svg" width="70%" alt="" /></div>
 
 ## Repository Structure
 
@@ -53,6 +83,8 @@ This repository is not presented as the official LMU/InnoLab source release. The
 ├── docs/                    # Architecture and publishing notes
 └── .github/workflows/       # CI workflow
 ```
+
+<div align="center"><img src="./assets/divider.svg" width="70%" alt="" /></div>
 
 ## Getting Started With Docker
 
@@ -136,6 +168,8 @@ The `npm run docker:*` commands are kept as aliases for convenience, but the she
 
 If Docker Desktop on Apple Silicon has trouble with old `node-sass` binaries, keep the Compose `platform: linux/amd64` settings. They are intentional for this legacy Node 10 stack.
 
+<div align="center"><img src="./assets/divider.svg" width="70%" alt="" /></div>
+
 ## Manual Local Setup
 
 Use this only if you want to run the apps without Docker.
@@ -210,6 +244,8 @@ The Angular app defaults to:
 http://localhost:4200
 ```
 
+<div align="center"><img src="./assets/divider.svg" width="70%" alt="" /></div>
+
 ## Useful Commands
 
 From the repository root:
@@ -226,6 +262,8 @@ npm run build:front
 npm run lint:front
 ```
 
+<div align="center"><img src="./assets/divider.svg" width="70%" alt="" /></div>
+
 ## Security and Publishing Notes
 
 - Original database dumps are intentionally excluded from the repository.
@@ -237,6 +275,20 @@ npm run lint:front
 - Review [docs/publish-checklist.md](docs/publish-checklist.md) before changing repository metadata or demo content.
 - If realistic production-like demo data is needed later, create sanitized original seed data or use assets with explicit permission.
 
+<div align="center"><img src="./assets/divider.svg" width="70%" alt="" /></div>
+
 ## Portfolio Positioning
 
 Full-stack CMS portal demonstrating Angular, Node.js, Strapi, MongoDB, content modeling, REST integration, Dockerized local development, and safe repository cleanup for public portfolio presentation.
+
+<div align="center"><img src="./assets/divider.svg" width="70%" alt="" /></div>
+
+<div align="center">
+
+### Built by Ahmed Sghaier — Senior Full-Stack Engineer
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ahmed-sghaier-449778137)
+[![Email](https://img.shields.io/badge/Email-a7mado008@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:a7mado008@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-A7med--Sghaier-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/A7med-Sghaier)
+
+</div>
